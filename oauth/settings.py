@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'oauth',
     'rest_framework',
+    'oauth2_provider',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -53,7 +54,19 @@ MIDDLEWARE_CLASSES = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION' : (),
+    'DEFAULT_AUTHENTICATION_CLASSES' : (
+        # 'rest_framework.authentication.SessionAuthentication',
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    )
 }
 
 ROOT_URLCONF = 'oauth.urls'

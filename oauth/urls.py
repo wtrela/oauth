@@ -17,6 +17,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from oauth.views.profile import ProfileList, ProfileDetails
+from django.conf.urls import url, include
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^profile/details/$', ProfileDetails.as_view()),
+    url(r'^profile/list/$', ProfileList.as_view()),
+    url(r'^o/', include('oauth2_provider.urls', namespace = 'oauth2_provider' ),)
 ]
