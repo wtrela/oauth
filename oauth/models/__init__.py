@@ -1,3 +1,3 @@
-from scout.models.profile import Profile
+from oauth.models.profile import Profile
 
 __all__ = ('Profile')
