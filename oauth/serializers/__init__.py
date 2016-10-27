@@ -1,3 +1,3 @@
-from oauth.serializers.profile import ProfileSerializer
+from oauth.serializers.profile import ProfileSerializer, SignUpSerializer
 
-__all__ = ('ProfileSerializer')
+__all__ = ('ProfileSerializer', 'SignUpSerializer')

@@ -1,7 +1,7 @@
 from rest_framework import urls
 from django.contrib import admin
 
-from oauth.views.profile import ProfileList, ProfileDetails, ApiEndpoint, HomeView
+from oauth.views.profile import ProfileList, ProfileDetails, ApiEndpoint, HomeView, SignUp
 from oauth.views.registration import CreateUserView
 from django.conf.urls import url, include
 
@@ -11,7 +11,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # Registration of new users
-    url(r'^register/$', CreateUserView.as_view(), name='user'),
+    url(r'^register/$', SignUp.as_view(), name='register'),
+
+
+
     url(r'^api-auth/', include('rest_framework.urls'), name='rest_framework'),
 
 
