@@ -1,3 +1,3 @@
-from oauth.views.profile import ProfileList, ProfileDetails
+from oauth.views.profile import ProfileList, ProfileDetails, HomeView, ApiEndpoint
 
-__all__ = ('ProfileList', 'ProfileDetails')
+__all__ = ('ProfileList', 'ProfileDetails', 'HomeView', 'ApiEndpoint')

@@ -3,6 +3,11 @@ from oauth.models import Profile
 from oauth.serializers import ProfileSerializer
 from oauth2_provider.views.generic import ProtectedResourceView
 from django.http.response import HttpResponse
+from django.views import generic
+
+
+class HomeView(generic.TemplateView):
+    template_name = 'index.html'
 
 class ProfileList(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
