@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row-fluid">
+        <div class="span4">
+            <h1>Profile details</h1>
+            <div>
+
+                <li>{{ now }}</li>
+                <li>{{ profile.username }}</li>
+                <li>{{ profile.first_name }}</li>
+                <li>{{ profile.last_name }}</li>
+                <!--<li>{{ profile.address_name }}</li>-->
+
+                <h1>All users</h1>
+                <ul>
+                {% for user in object_list %}
+                    <li>{{ user.username }}</li>
+                {% empty %}
+                    <li>No articles yet.</li>
+                {% endfor %}
+                </ul>
+
+
+                <div class="span10">
+                    <a href="/api-auth/logout/" class="btn btn-info" role="button">Sign Out</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock content %}

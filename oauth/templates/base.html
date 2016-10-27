@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <script src="{% static 'js/bootstrap.js' %}"></script>
+
+  </head>
+  <body class="container">
+        <div class="row-fluid">
+        {% block content %}
+
+
+    	{% endblock %}
+
+        </div>
+
+
+  </body>
+</html>

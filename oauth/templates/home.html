@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Hello</h1>
+
+    <div class="span4">
+        <a href="{% url 'register' %}" class="btn btn-info" role="button">Sign Up</a>
+
+        <a href="/api-auth/login/" class="btn btn-info" role="button">Sign In</a>
+    </div>
+{% endblock content %}

@@ -6,9 +6,23 @@ from django.http.response import HttpResponse
 from django.views import generic
 from django.contrib.auth.models import User
 from oauth.permissions import IsAuthenticatedOrCreate
+from django.utils import timezone
 
 class HomeView(generic.TemplateView):
-    template_name = 'index.html'
+    template_name = 'home.html'
+
+class ProfileView(generic.ListView):
+    model = User
+    template_name = 'profile.html'
+
+    def get_context_data(self, **kwargs):
+        print kwargs
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        context['profile'] = User.objects.filter(username=self.request.user) # should be Profile
+        return context
+
+
 
 class ProfileList(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
@@ -21,11 +35,3 @@ class ProfileDetails(generics.RetrieveUpdateDestroyAPIView):
 class ApiEndpoint(ProtectedResourceView):
     def get(self, request, *args, **kwargs):
         return HttpResponse('Protected with OAuth2!')
-
-
-###### dorobione
-
-class SignUp(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = SignUpSerializer
-    permission_classes = (IsAuthenticatedOrCreate,)

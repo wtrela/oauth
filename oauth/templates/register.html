@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>Please Register</p>
+<form method="post" action="" class="uniForm">
+    {% csrf_token %}
+
+    <table>
+        {% load crispy_forms_tags %}
+        {% load crispy_forms_filters %}
+
+        {{a_form|crispy}}
+        {{b_form|crispy}}
+        <input type="submit" value="Submit Form"/>
+    </table>
+</form>
+
+{% endblock content %}

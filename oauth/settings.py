@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'oauth',
     'rest_framework',
     'oauth2_provider',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 AUTHENTICATION_BACKENDS = (
     'oauth2_provider.backends.OAuth2Backend',
@@ -151,7 +154,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/profile/details'
+LOGIN_REDIRECT_URL = '/profile/'
 LOGIN_URL = '/api-auth/login/'
 LOGOUT_URL = '/api-auth/logout/'
 
@@ -161,4 +164,6 @@ LOGIN_REQUIRED_URLS = (
 )
 LOGIN_REQUIRED_URLS_EXCEPTIONS = (
     r'^/api-auth/login/$',
+    r'^/register/$',
+    r'^/$',
 )
