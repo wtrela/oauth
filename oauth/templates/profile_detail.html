@@ -5,11 +5,11 @@
             <h1>Profile details</h1>
             <div>
 
-                <li>Login: {{ profile.user.username }}</li>
-                <li>First name: {{ profile.first_name }}</li>
-                <li>Last name: {{ profile.last_name }}</li>
-                <li>Email: {{ profile.last_name }}</li>
-                <li>Address: {{ profile.address_name }}</li>
+                <li>Login: {{ user.username }}</li>
+                <li>First name: {{ user.first_name }}</li>
+                <li>Last name: {{ user.last_name }}</li>
+                <li>Email: {{ user.last_name }}</li>
+                <li>Address: {{ user.address_name }}</li>
 
                 <div class="span10">
                     <a href="/api-auth/logout/" class="btn btn-info" role="button">Sign Out</a>

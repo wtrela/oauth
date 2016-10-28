@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from oauth.forms.profile import RegisterForm2
 from oauth.models.profile import Profile
 
-from oauth.serializers.profile import UserSerializer
+from oauth.serializers.profile import UserSerializer, ProfileSerializer
 
 from django.views.generic.edit import CreateView
 
@@ -13,7 +13,7 @@ class CreateUserView(CreateView):
     permission_classes = [
         permissions.AllowAny # Or anon users can't register
     ]
-    serializer_class = UserSerializer
+    serializer_class = ProfileSerializer
 
     template_name = 'register.html'
     form_class = UserCreationForm

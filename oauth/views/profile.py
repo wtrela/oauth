@@ -16,14 +16,14 @@ class ProfileListView(generic.ListView):
 
 
 class ProfileDetailView(generic.DeleteView):
-    model = Profile
+    model = User
     template_name = 'profile_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProfileDetailView, self).get_context_data(**kwargs)
 
         context.update({
-            'profile': self.object
+            'user': self.object
         })
         print self.object
         return context
