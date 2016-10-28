@@ -7,3 +7,4 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=100, blank=True, verbose_name='first name')
     last_name = models.CharField(max_length=100, blank=True, verbose_name='last name')
     address = models.CharField(max_length=100, blank=True, verbose_name='address')
+    description = models.CharField(max_length=100, blank=True, verbose_name='description')

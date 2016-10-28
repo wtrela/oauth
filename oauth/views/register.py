@@ -1,6 +1,6 @@
 from rest_framework import permissions
-
-from oauth.forms.profile import RegisterForm1, RegisterForm2
+from django.contrib.auth.forms import UserCreationForm
+from oauth.forms.profile import RegisterForm2
 from oauth.models.profile import Profile
 
 from oauth.serializers.profile import UserSerializer
@@ -16,11 +16,11 @@ class CreateUserView(CreateView):
     serializer_class = UserSerializer
 
     template_name = 'register.html'
-    form_class = RegisterForm1
+    form_class = UserCreationForm
     success_url = '/api-auth/login/'
 
     def get_context_data(self, **kwargs):
         return {
-        'a_form': RegisterForm1,
+        'a_form': UserCreationForm,
         'b_form': RegisterForm2
         }

@@ -1,37 +1,58 @@
 from rest_framework import generics
 from oauth.models import Profile
-from oauth.serializers import ProfileSerializer, SignUpSerializer
+from oauth.serializers import ProfileSerializer
 from oauth2_provider.views.generic import ProtectedResourceView
-from django.http.response import HttpResponse
 from django.views import generic
 from django.contrib.auth.models import User
-from oauth.permissions import IsAuthenticatedOrCreate
-from django.utils import timezone
+from rest_framework.response import Response
 
 class HomeView(generic.TemplateView):
     template_name = 'home.html'
 
-class ProfileView(generic.ListView):
+
+class ProfileListView(generic.ListView):
     model = User
-    template_name = 'profile.html'
+    template_name = 'profile_list.html'
+
+
+class ProfileDetailView(generic.DeleteView):
+    model = Profile
+    template_name = 'profile_detail.html'
 
     def get_context_data(self, **kwargs):
-        print kwargs
-        context = super(ProfileView, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        context['profile'] = User.objects.filter(username=self.request.user) # should be Profile
+        context = super(ProfileDetailView, self).get_context_data(**kwargs)
+
+        context.update({
+            'profile': self.object
+        })
+        print self.object
         return context
-
-
 
 class ProfileList(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
+
 class ProfileDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-class ApiEndpoint(ProtectedResourceView):
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('Protected with OAuth2!')
+
+class ListEndpoint(ProtectedResourceView):
+    def get(self, request, format=None):
+        """
+        Return a list of all users.
+        """
+        usernames = [user.username for user in User.objects.all()]
+        return Response(usernames)
+
+class DetailEndpoint(ProtectedResourceView):
+    def get(self, request, format=None):
+        """
+        Return user details
+        """
+        user = Profile.objects.all().filter(self.request.user)
+        return Response(user)
+
+
+
